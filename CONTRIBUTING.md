@@ -64,6 +64,5 @@ Also, please watch the repo and respond to questions/bug reports/feature request
 [egghead]: https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github
 [semantic-release]: https://npmjs.com/package/semantic-release
 [convention]: https://github.com/conventional-changelog/conventional-changelog-angular/blob/ed32559941719a130bb0327f886d6a32a8cbc2ba/convention.md
-[all-contributors]: https://github.com/kentcdodds/all-contributors
 [ROADMAP]: ./other/ROADMAP.md
 [nps]: https://npmjs.com/package/nps
