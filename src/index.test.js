@@ -74,7 +74,8 @@ test('test: length', () => {
 })
 
 test('test: curry', () => {
-  expect(true).toEqual(true)
+  const add = curry((x, y) => x + y)
+  expect(add(10)(10)).toEqual(add(10, 10))
 })
 
 test('test: min', () => {
