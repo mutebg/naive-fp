@@ -85,3 +85,9 @@ test('test: min', () => {
 test('test: max', () => {
   expect(max([4, 1, 2, 3])).toEqual(4)
 })
+
+test('demo', () => {
+  // const cReduce = curry(reduce)
+  // console.log(cReduce)
+  //expect(cReduce((x, y) => x + y)(0)([1, 2, 3])).toBe(10)
+})

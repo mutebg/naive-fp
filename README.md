@@ -2,31 +2,6 @@
 
 A naive implementation of functional library for JavaScript programmers
 
-[![Build Status][build-badge]][build]
-[![Code Coverage][coverage-badge]][coverage]
-[![Dependencies][dependencyci-badge]][dependencyci]
-[![version][version-badge]][package]
-[![downloads][downloads-badge]][npm-stat]
-[![MIT License][license-badge]][LICENSE]
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
-[![PRs Welcome][prs-badge]][prs]
-[![Donate][donate-badge]][donate]
-[![Code of Conduct][coc-badge]][coc]
-[![Roadmap][roadmap-badge]][roadmap]
-[![Examples][examples-badge]][examples]
-
-[![Watch on GitHub][github-watch-badge]][github-watch]
-[![Star on GitHub][github-star-badge]][github-star]
-[![Tweet][twitter-badge]][twitter]
-
-## The problem
-
-
-
-## This solution
-
-
 
 ## Installation
 
@@ -38,6 +13,26 @@ npm install --save naivefp
 ```
 
 ## Usage
+Functions list:
+`log`, `map`, `filter`, `reduce`, `reduceRight`, `head`, `last`, `tail`,
+`compose`, `pipe`, `curry`, `concat`, `reverse`, `length`, `min` &  `max`
+
+
+```html
+import { map, filter, curry} from 'naivefp';
+
+const double = map( x => x * 2 );
+double([1,2,3]);
+
+```
+
+
+Functions have fixed arities to support auto-currying"
+`map`, `filter`, `reduce`, `reduceRight`
+
+
+
+
 
 
 

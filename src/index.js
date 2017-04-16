@@ -5,17 +5,20 @@ export const log = x => {
   return x
 }
 
+export const curry = (fn, arr = []) => (...args) =>
+  (a => (a.length === fn.length ? fn(...a) : curry(fn, a)))([...arr, ...args])
+
 export const trace = log
 
-export const map = (fn, list) => {
+export const map = curry((fn, list) => {
   if (list.length === 0) {
     return []
   }
   const [fst, ...rest] = list
   return [fn(fst)].concat(map(fn, rest))
-}
+})
 
-export const filter = (fn, list) => {
+export const filter = curry((fn, list) => {
   if (list.length === 0) {
     return []
   }
@@ -25,25 +28,25 @@ export const filter = (fn, list) => {
     return [fst].concat(filter(fn, rest))
   }
   return filter(fn, rest)
-}
+})
 
-export const reduce = (fn, initValue = 0, list = []) => {
+export const reduce = curry((fn, initValue, list) => {
   if (list.length === 0) {
     return initValue
   }
   const [fst, ...rest] = list
   return reduce(fn, fn(initValue, fst), rest)
-}
+})
 
-export const reduceRight = (fn, initValue = 0, list = []) => {
+export const reduceRight = curry((fn, initValue, list) => {
   if (list.length === 0) {
     return initValue
   }
   const [fst, ...rest] = list
   return fn(reduceRight(fn, initValue, rest), fst)
-}
+})
 
-export const fold = reduce
+export const foldl = reduce
 
 export const foldr = reduceRight
 
@@ -56,9 +59,6 @@ export const tail = ([fst, ...rest]) => rest
 export const compose = (...fns) => x => reduceRight((v, fn) => fn(v), x, fns)
 
 export const pipe = (...fns) => x => reduce((v, fn) => fn(v), x, fns)
-
-export const curry = (fn, arr = []) => (...args) =>
-  (a => (a.length === fn.length ? fn(...a) : curry(fn, a)))([...arr, ...args])
 
 export const concat = (...lists) => reduce((x, y) => x.concat(y), [], lists)
 
