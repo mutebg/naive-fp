@@ -1,0 +1,11 @@
+{
+  "extends": [
+      "kentcdodds",
+      "kentcdodds/jest",
+      "kentcdodds/prettier"
+  ],
+  rules: {
+    func-style: 'off',
+    no-unused-vars: 'off'
+  }
+}
