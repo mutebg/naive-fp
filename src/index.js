@@ -5,10 +5,10 @@ export const log = x => {
   return x
 }
 
+export const trace = log
+
 export const curry = (fn, arr = []) => (...args) =>
   (a => (a.length === fn.length ? fn(...a) : curry(fn, a)))([...arr, ...args])
-
-export const trace = log
 
 export const map = curry((fn, list) => {
   if (list.length === 0) {
@@ -17,6 +17,8 @@ export const map = curry((fn, list) => {
   const [fst, ...rest] = list
   return [fn(fst)].concat(map(fn, rest))
 })
+
+// export const indexedMap = curry((fn, list) => fasle)
 
 export const filter = curry((fn, list) => {
   if (list.length === 0) {
@@ -75,3 +77,101 @@ export const length = list => {
 export const max = list => Math.max(...list)
 
 export const min = list => Math.min(...list)
+
+export const intersperse = curry((a, list) => list.join(a))
+
+export const init = list => {
+  if (length(list) <= 1) {
+    return []
+  }
+
+  const [fst, ...rest] = list
+  return concat(fst, init(rest))
+}
+
+/*
+Determines whether any element of the structure satisfies the predicate.
+*/
+export const any = curry((fn, list) => length(filter(fn, list)) > 0)
+
+/*
+Determines whether all elements of the structure satisfy the predicate.
+*/
+export const all = curry(
+  (fn, list) => length(filter(fn, list)) === length(list),
+)
+
+/*
+The sum function computes the sum of the numbers of a structure.
+*/
+export const sum = list => reduce((x, y) => x + y, 0, list)
+
+/*
+  Multiplies together all the elements of a list.
+*/
+export const product = list => reduce((x, y) => x * y, 1, list)
+
+/*
+  Returns the first n elements of the given list
+*/
+export const take = curry((position, list) => {
+  if (position === 0) {
+    return []
+  } else if (length(list) <= position) {
+    return list
+  } else {
+    const [first, ...rest] = list
+    return [first, ...take(position - 1, rest)]
+  }
+})
+
+/*
+  Removes the first n elements of the given list
+*/
+export const drop = curry((position, list) => {
+  if (position === 0) {
+    return list
+  } else if (length(list) <= position) {
+    return []
+  } else {
+    const [first, ...rest] = list
+    return drop(position - 1, rest)
+  }
+})
+
+/*
+  Splits a given list at a given index.
+*/
+export const splitAt = curry((position, list) => {
+  return [take(position, list), drop(position, list)]
+})
+
+export const permutations = list => {
+  if (list.length === 0) {
+    return [[]]
+  }
+  return reduce(
+    (acc, perm) => {
+      // use native map instead library one till implement indexMap
+      const mapped = list.map((e, pos) => {
+        const newPerm = perm.slice()
+        newPerm.splice(pos, 0, list[0])
+        return newPerm
+      })
+      return concat(acc, mapped)
+    },
+    [],
+    permutations(drop(1, list)),
+  )
+}
+
+/*
+ Splits a collection into slices of the specified length.
+*/
+// export const splitEvery = curry((position, list) => {
+//   return false
+// })
+
+// export const zip = curry((a, b) => false
+
+// export const zipWidth = curry( (fn, a, b) => null )

@@ -27,7 +27,7 @@ double([1,2,3]);
 ```
 
 
-Functions have fixed arities to support auto-currying"
+Functions have fixed arities to support auto-currying:
 `map`, `filter`, `reduce`, `reduceRight`
 
 
